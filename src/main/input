@@ -1,0 +1,34 @@
+&grille
+basis_file='BeH2_opt_NoSym'
+nq= 1
+inR= 1
+job= 'VOID'
+/
+&planewaves
+nx= 50			!Number of points for the X axis in both the spacial and momentum spaces
+xmin= -25		!Minimal value in the X axis
+ny= 1			!Number of points for the Y axis in both the spacial and momentum spaces
+ymin=  0		!Minimal value in the Y axis
+nz= 50			!Number of points for the Z axis in both the spacial and momentum spaces
+zmin= -25		!Minimal value in the Z axis
+opt_GS=0                !opt_GS=0 <-> use OPW (no Gramm-Schmidt orthog.) opt_GS=1 <-> use OPW2 (w GS orthog.)
+/
+&drt
+Ne= 6			!Number of electrons
+Norb_cat= 3		!Number of active orbitals(in the Q_0 subspace)
+Norb_sym= 1		!Number of symbolic orbitals(for ionisation)
+FC= 2			!Number of frozen cores
+S= 0.d0			!Total spin of the system
+restriction=.TRUE.	!Restrict to single ionisation
+/
+&champ
+E0= 1.6d-1		!Laser intensity(a.u.)
+omega= 0.055		!Laser frequency(a.u.) 
+delta= 0.0E+000		!Laser phase(units of pi)
+theta= 0.5d0		!Angle from the Z axis to polarisation(units of pi)
+phy= 0.0d0		!Angle between sin(theta) and the X axis(units of pi)
+pulsed= .FALSE.		!The form of the pulse
+nper= 1			!Number of optic cycles
+pdt= 1000		!Number of timesteps per optic cycle 
+tmin=0.d0		!Initial time
+/
