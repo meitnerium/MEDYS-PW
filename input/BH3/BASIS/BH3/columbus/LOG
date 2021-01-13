@@ -1,0 +1,63 @@
+===========================================================
+===                   runc                              ===
+===           version 7.0 beta , Jan 2011               ===
+===          requires COLUMBUS version COL_7.0_beta     ===
+===                                                     ===
+===   written by: Thomas Mueller                        ===
+===   gradient ext. by: Michal Dallos                   ===
+===               Institute for Theoretical Chemistry   ===
+===               University of Vienna                  ===
+===               Waehringerstr. 17                     ===
+===               A-1090 Vienna, Austria                ===
+===   in revision by: Thomas Mueller, JSC, FZ Juelich   ===
+===               Felix Plasser, University of Vienna   ===
+===========================================================
+
+
+coremem. (seq.): 1000 MB,  coremem. (par.): 1000 MB
+Vdisk size: 0 DP
+Reading job control file control.run ...   done 
+Creating various directories ... 
+ done 
+Checking for illegal keywords and keyword combinations ... done 
+Checking for complete set of input files ... done
+
+ ++++++++++++++++++ input file generation +++++++++++++ 
+ runc start: Sun Jan 14 16:37:21 EST 2018
+ 
+  runc start: Sun Jan 14 16:37:21 EST 2018
+ 
+ starting unik.gets.x > unikls at Sun Jan 14 16:37:21 EST 2018
+
+ -------------------- unik.gets.x ------------------------
+ --------------------------------------------------- 
+ starting argnew.x  at Sun Jan 14 16:37:21 EST 2018
+
+ -------------------- argnew.x ------------------------
+ --------------------------------------------------- 
+ ++++++++++++++++++++ ao integral calculation ++++++++++++++++
+starting argos.x -m 1000  at Sun Jan 14 16:37:21 EST 2018
+
+ -------------------- argos.x ------------------------
+ --------------------------------------------------- 
+ ++++++++++++++++++++ SCF calculation +++++++++++++++
+starting scfpq.x -m 1000 at Sun Jan 14 16:37:21 EST 2018
+
+ -------------------- scfpq.x ------------------------
+  nuclear repulsion energy          7.4661028475
+  kinetic energy                   26.1526685208
+  potential energy                -52.3911210219
+  total energy                    -26.2384525011
+  virial theorem                    1.9967306006
+ --------------------------------------------------- 
+ 
+
+============== timings ===================
+
+   unik.gets.x    
+   argnew.x       
+   argos.x        
+   scfpq.x        
+
+==========================================
+
