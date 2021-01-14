@@ -5,19 +5,19 @@ inR= 1
 job= 'O2_Req'
 /
 &planewaves
-nx= 401			  !Number of points for the X axis in both the spacial and momentum spaces
+nx= 201			  !Number of points for the X axis in both the spacial and momentum spaces
 xmin= -200		!Minimal value in the X axis
 ny= 1			    !Number of points for the Y axis in both the spacial and momentum spaces
 ymin=  -100		  !Minimal value in the Y axis
-nz= 401			  !Number of points for the Z axis in both the spacial and momentum spaces
+nz= 201			  !Number of points for the Z axis in both the spacial and momentum spaces
 zmin= -200		!Minimal value in the Z axis
 opt_GS=0                !=1 enable Gram–Schmidt ortogonalisation (not working now)
 /
 &drt
-Ne=4			  !Number of electrons
-Norb_cat=10		!Number of active orbitals(in the Q_0 subspace)
+Ne=2			  !Number of electrons
+Norb_cat=2		!Number of active orbitals(in the Q_0 subspace)
 Norb_sym=1		      !Number of symbolic orbitals(for ionisation)
-FC=5			          !Number of frozen cores
+FC=7			          !Number of frozen cores
 S=0.d0			        !Total spin of the system
 restriction=.TRUE.	!Restrict to single ionisation
 /

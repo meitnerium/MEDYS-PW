@@ -17,8 +17,10 @@ medys_SOURCES =   src/all_v001/basics.f90 src/all_v001/variables.f90 src/all_v00
 
 #medys_FCFLAGS = -I${MKLROOT}/include/intel64/lp64/ -nogen-interface -fpe0 -O2 -qopenmp
 #For debugging
-#medys_FCFLAGS = -I${MKLROOT}/include/intel64/lp64/ -nogen-interface -fpe0 -g -traceback -debug extended -heap-arrays -fp-stack-check -debug all -qopenmp
+medys_FCFLAGS = -I${MKLROOT}/include/intel64/lp64/ -nogen-interface -fpe0 -g -traceback -debug extended -heap-arrays -fp-stack-check -debug all -qopenmp
 #For production
-medys_FCFLAGS = -I${MKLROOT}/include/intel64/lp64/ -O2 -nogen-interface -fpe0 -heap-arrays -fp-stack-check  -qopenmp
+#medys_FCFLAGS = -I${MKLROOT}/include/intel64/lp64/ -O2 -nogen-interface -fpe0 -heap-arrays -fp-stack-check  -qopenmp
+
+
 medys_LDADD = -L${MKLROOT}/lib/intel64 -lmkl_intel_lp64 -lmkl_core -lmkl_intel_thread -lpthread -liomp5 -lmkl_blas95_lp64 -lmkl_lapack95_lp64
 
