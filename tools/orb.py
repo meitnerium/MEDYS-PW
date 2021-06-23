@@ -287,16 +287,16 @@ for i in range(NCONS):
     for j in range(int(a)):
         ZET.append(argosls[line].split()[0])
         ETA.append(argosls[line].split()[1])
-        print()
+        #print()
         une_base1.append([float(argosls[line].split()[0]),float(argosls[line].split()[1])])
-        print("test base test base")
+        #print("test base test base")
         line=line+1
 
     liste_base.append(une_base1)
-print("testi")
-print(liste_base)
+#print("testi")
+#print(liste_base)
 
-print(liste_base[0])
+#print(liste_base[0])
 #print(ICSU)
 #line=line+ICSU[0]+ICSU[1]
 #print(argosls[line].split())
@@ -362,7 +362,7 @@ for i in range(NS):
         atoms.append(atom(type=temp[0],chg=CHG[i],pos=postemp))
         #unatom =
         print('testi',i)
-        molecule.add_atoms(atoms[i])
+        molecule.add_atoms(atom(type=temp[0],chg=CHG[i],pos=postemp))
         line=line+1
         if (NC[i] != 1):
             print("TODO: NC[1] != 1")
@@ -381,6 +381,7 @@ for i in range(NS):
             print("l = ",'basenumber = ',basenumber)
             unebase = basis(liste_base[basenumber] ,l)
             print("Addinf  a base to atom["+str(i)+"]")
+            atoms[i].add_basis(unebase)
             molecule.atoms[i].add_basis(unebase)
             line = line +1
 
@@ -432,10 +433,13 @@ xv, zv = np.meshgrid(x, z, sparse=False, indexing='ij')
 print("test molecule")
 print(molecule.atoms)
 n = 0
+i=0
 for atom in molecule.atoms:
     print(atom.type)
     print(atom.pos)
     print("Len atom.basis " + str(len(atom.basis)))
+    print("Len atoms[i].basis " + str(len(atoms[n].basis)))
+    i=i+1
     for unebase in atom.basis:
         print('listecons = ',unebase.listecons)
         print('l = ',unebase.l)
