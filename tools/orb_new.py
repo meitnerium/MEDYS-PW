@@ -8,8 +8,8 @@ class molecule():
         self.totchg = totchg
         self.mocoeff = mocoeff
 
-    def add_atoms(self,atom):
-        self.atoms.append(atom)
+    def add_atoms(self,atome):
+        self.atoms.append(atome)
 
 
 class basis():
@@ -19,8 +19,8 @@ class basis():
 
 
 class atom():
-    def __init__(self,   basis = [], pos=[0.,0.,0.], chg=1.0, type='H'):
-        self.type = type
+    def __init__(self,   basis = [], pos=[0.,0.,0.], chg=1.0, atype='H'):
+        self.atype = atype
         self.chg = chg
         self.pos = pos
         self.basis = basis
@@ -33,6 +33,8 @@ zmax=6
 
 x=np.arange(-xmax,xmax,0.01)
 z=np.arange(-zmax,zmax,0.01)
+
+xv, zv = np.meshgrid(x, z, sparse=False, indexing='ij')
 
 mocoeff=np.zeros((27,27))
 fname=REP+'mocoef_scf.sp'
@@ -65,9 +67,12 @@ def get_orb(argosls, line):
         else: 
             line = line + 2
             if 's' in TYPE:
+                line = line + 4
+                print("test line ", argosls[line])
                 ao = [argosls[line].split()[1]]
                 l = 0
             if 'p' in TYPE:
+                line = line + 6
                 ao = [argosls[line].split()[1],argosls[line+1].split()[1],argosls[line+2].split()[1]]
                 line = line + 2
                 l = 1
@@ -105,6 +110,7 @@ def searchorb(atome,argosls,line,mol):
         if "orbitals" in argosls[line]:
             searchorb(atome,argosls,line,mol)
         else :
+            mol.add_atoms(atome)
             searchatomorb(argosls,line,atome,mol)
 
 def searchatomorb(argosls,line,atome,mol):
@@ -127,11 +133,14 @@ def searchatomorb(argosls,line,atome,mol):
             print(ATOMNUM)
             print(X,Y,Z)
             
-            atome = atom(type=ATYPE, pos = [X,Y,Z], chg = CHG)
-            
+            atome = atom(atype=ATYPE, pos = [X,Y,Z], chg = CHG, basis=[])
+            print("test new basis", atome.basis )
             line = line + 2
             searchorb(atome,argosls,line,mol)
-            mol.add_atoms(atome)
+            
+            print("testing atom add in molecule")
+            for atome in mol.atoms:
+                print(atome.atype)
         else:
             #mol.add_atoms(atome)
             print("What else???")
@@ -141,9 +150,38 @@ def searchatomorb(argosls,line,atome,mol):
 
 searchatomorb(argosls,line,atome,mol)
 
-
-for atome in mol.atoms:
-    print(atome.type)
+print("Testing Molecule")
+for n in range(len(mol.atoms)):
+    atome = mol.atoms[n]
+    print(atome.atype)
     print(atome.pos)
     for base in atome.basis:
         print(base.listecons)
+        
+print("printing moceoeff")
+for mocoef in mocoeff:
+    atome = mol.atoms[n]
+    orb = np.zeros(xv.shape)
+    print(atome.atype)
+    print(atome.pos)
+    for base in atome.basis:
+        print(base.listecons)
+        n = 0 
+        for con in base.listecons:
+            if base.l == 0:
+                orb = orb + con[1] * np.exp(-con[0] * (xv ** 2.0 + zv ** 2.0))
+                n = n + 1
+    
+    
+    
+    if unebase.l == 1:
+            print("fonction 1s")
+            orb = np.zeros(xv.shape)
+            f = open('orb_' + str(n) + '.txt', 'w')
+            for con in unebase.listecons:
+                f.write(str(con[0])+" "+str(con[1])+"\n")
+                orb = orb + con[1] * np.exp(-con[0] * (xv ** 2.0 + zv ** 2.0))
+            f.close()
+            plt.contourf(xv, zv, orb)
+            plt.savefig('orb_'+str(n)+'.png')
+            n = n + 1
