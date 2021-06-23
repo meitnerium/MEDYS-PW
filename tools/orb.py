@@ -377,8 +377,9 @@ for i in range(NS):
             a = int(argosls[line].split()[0])-1
             print(liste_base[a])
             l = int(argosls[line].split()[1])
-            print("l = ",)
-            unebase = basis(liste_base[int(argosls[line].split()[0])-1] ,l)
+            basenumber = int(argosls[line].split()[0])-1
+            print("l = ",'basenumber = ',basenumber)
+            unebase = basis(liste_base[basenumber] ,l)
             line = line +1
             atoms[i].add_basis(unebase)
     #molecule.add_atoms(unatom)
