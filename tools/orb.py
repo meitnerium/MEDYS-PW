@@ -380,8 +380,10 @@ for i in range(NS):
             basenumber = int(argosls[line].split()[0])-1
             print("l = ",'basenumber = ',basenumber)
             unebase = basis(liste_base[basenumber] ,l)
+            print("Addinf  a base to atom["+str(i)+"]")
+            molecule.atoms[i].add_basis(unebase)
             line = line +1
-            atoms[i].add_basis(unebase)
+
     #molecule.add_atoms(unatom)
         #            ENDDO
         #            IF(NCRS .NE. 0) THEN
@@ -433,6 +435,7 @@ n = 0
 for atom in molecule.atoms:
     print(atom.type)
     print(atom.pos)
+    print("Len atom.basis " + str(len(atom.basis)))
     for unebase in atom.basis:
         print('listecons = ',unebase.listecons)
         print('l = ',unebase.l)
