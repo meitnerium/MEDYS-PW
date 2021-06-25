@@ -158,41 +158,69 @@ for n in range(len(mol.atoms)):
     print(atome.atype)
     print(atome.pos)
     for base in atome.basis:
-        orb = np.zeros(xv.shape)
+
         print(base.listecons)
         if base.l == 0:
+            orb = np.zeros(xv.shape)
             for con in base.listecons:
                 orb = orb + con[1] * np.exp(-con[0] * ((xv-atome.pos[0]) ** 2.0 + (zv-atome.pos[2]) ** 2.0))
         if base.l == 1:
             if p == 0:
+                orb = np.zeros(xv.shape)
                 for con in base.listecons:
                     orb = orb + con[1] * np.exp(-con[0] * ((xv - atome.pos[0]) ** 2.0 + (zv - atome.pos[2]) ** 2.0))
                 orb = orb * xv
                 p = 1
+                plt.contourf(xv, zv, orb)
+                plt.colorbar()
+                plt.savefig('aoorb_' + str(m) + '.png')
+                plt.close()
+                aoorbs.append(orb)
+                m = m + 1
             if p == 1:
+                orb = np.zeros(xv.shape)
                 for con in base.listecons:
                     orb = orb + con[1] * np.exp(-con[0] * ((xv - atome.pos[0]) ** 2.0 + (zv - atome.pos[2]) ** 2.0))
-                orb = orb * xv
+                orb = orb * 0.
+                plt.contourf(xv, zv, orb)
+                plt.colorbar()
+                plt.savefig('aoorb_' + str(m) + '.png')
+                plt.close()
+                aoorbs.append(orb)
+                m = m + 1
                 p = 2
             if p == 2:
+                orb = np.zeros(xv.shape)
                 for con in base.listecons:
                     orb = orb + con[1] * np.exp(-con[0] * ((xv - atome.pos[0]) ** 2.0 + (zv - atome.pos[2]) ** 2.0))
-                orb = orb * xv
+                orb = orb * zv
+
                 p = 0
         #print('Min, Max')
         #print(min(orb))
         #print(max(orb))
         aoorbs.append(orb)
-        aoorbs.append(orb)
+
         plt.contourf(xv, zv, orb)
         plt.colorbar()
         plt.savefig('aoorb_'+str(m)+'.png')
+        plt.close()
         m = m + 1
-        
-#print("printing moceoeff")
-#for mocoef in mocoeff:
-#    for atome in mol.atoms:
-#        orb = np.zeros(xv.shape)
+moorb = []
+#print("printing moceoeoof")
+m = 0
+for mocoefs in mocoeff:
+    orb = np.zeros(xv.shape)
+    for mocoef in mocoefs:
+        orb = orb + float(mocoef)*aoorbs[m]
+    plt.contourf(xv, zv, orb)
+    plt.colorbar()
+    plt.savefig('moorb_' + str(m) + '.png')
+    plt.close()
+    m = m + 1
+    #for mocoef in mocoeff:
+
+
 #        print(atome.atype)
 #        print(atome.pos)
 #        n = 0
