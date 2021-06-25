@@ -149,39 +149,60 @@ def searchatomorb(argosls,line,atome,mol):
          
 
 searchatomorb(argosls,line,atome,mol)
-
+aoorbs = []
 print("Testing Molecule")
+m = 0
+p = 0
 for n in range(len(mol.atoms)):
     atome = mol.atoms[n]
     print(atome.atype)
     print(atome.pos)
     for base in atome.basis:
+        orb = np.zeros(xv.shape)
         print(base.listecons)
+        if base.l == 0:
+            for con in base.listecons:
+                orb = orb + con[1] * np.exp(-con[0] * ((xv-atome.pos[0]) ** 2.0 + (zv-atome.pos[2]) ** 2.0))
+        if base.l == 1:
+            if p == 0:
+                for con in base.listecons:
+                    orb = orb + con[1] * np.exp(-con[0] * ((xv - atome.pos[0]) ** 2.0 + (zv - atome.pos[2]) ** 2.0))
+                orb = orb * xv
+                p = 1
+            if p == 1:
+                for con in base.listecons:
+                    orb = orb + con[1] * np.exp(-con[0] * ((xv - atome.pos[0]) ** 2.0 + (zv - atome.pos[2]) ** 2.0))
+                orb = orb * xv
+                p = 2
+            if p == 2:
+                for con in base.listecons:
+                    orb = orb + con[1] * np.exp(-con[0] * ((xv - atome.pos[0]) ** 2.0 + (zv - atome.pos[2]) ** 2.0))
+                orb = orb * xv
+                p = 0
+        #print('Min, Max')
+        #print(min(orb))
+        #print(max(orb))
+        aoorbs.append(orb)
+        aoorbs.append(orb)
+        plt.contourf(xv, zv, orb)
+        plt.colorbar()
+        plt.savefig('aoorb_'+str(m)+'.png')
+        m = m + 1
         
-print("printing moceoeff")
-for mocoef in mocoeff:
-    atome = mol.atoms[n]
-    orb = np.zeros(xv.shape)
-    print(atome.atype)
-    print(atome.pos)
-    for base in atome.basis:
-        print(base.listecons)
-        n = 0 
-        for con in base.listecons:
-            if base.l == 0:
-                orb = orb + con[1] * np.exp(-con[0] * (xv ** 2.0 + zv ** 2.0))
-                n = n + 1
-    
-    
-    
-    if unebase.l == 1:
-            print("fonction 1s")
-            orb = np.zeros(xv.shape)
-            f = open('orb_' + str(n) + '.txt', 'w')
-            for con in unebase.listecons:
-                f.write(str(con[0])+" "+str(con[1])+"\n")
-                orb = orb + con[1] * np.exp(-con[0] * (xv ** 2.0 + zv ** 2.0))
-            f.close()
-            plt.contourf(xv, zv, orb)
-            plt.savefig('orb_'+str(n)+'.png')
-            n = n + 1
+#print("printing moceoeff")
+#for mocoef in mocoeff:
+#    for atome in mol.atoms:
+#        orb = np.zeros(xv.shape)
+#        print(atome.atype)
+#        print(atome.pos)
+#        n = 0
+#        for base in atome.basis:
+#            print(base.listecons)#
+#
+#            for con in base.listecons:
+#                if base.l == 0:
+#                    orb = orb + con[1] * np.exp(-con[0] * ((xv-atome.pos[0]) ** 2.0 + (zv-atome.pos[2]) ** 2.0))
+#
+#            plt.contourf(xv, zv, orb)
+#            plt.savefig('orb_'+str(n)+'.png')
+#        n = n + 1
