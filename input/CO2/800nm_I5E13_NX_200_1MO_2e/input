@@ -5,19 +5,19 @@ inR= 1
 job= 'CO2_devTests'
 /
 &planewaves
-nx= 201			  !Number of points for the X axis in both the spacial and momentum spaces
+nx= 601			  !Number of points for the X axis in both the spacial and momentum spaces
 xmin= -150		!Minimal value in the X axis
 ny= 1			    !Number of points for the Y axis in both the spacial and momentum spaces
 ymin=  -100		  !Minimal value in the Y axis
-nz= 201			  !Number of points for the Z axis in both the spacial and momentum spaces
-zmin= -200		!Minimal value in the Z axis
+nz= 601			  !Number of points for the Z axis in both the spacial and momentum spaces
+zmin= -150		!Minimal value in the Z axis
 opt_GS=0                !=1 enable Gram–Schmidt ortogonalisation (not working now)
 /
 &drt
 Ne= 22			  !Number of electrons
 Norb_cat= 1		!Number of active orbitals(in the Q_0 subspace)
 Norb_sym= 1		      !Number of symbolic orbitals(for ionisation)
-FC= 10			          !Number of frozen cores
+FC= 8			          !Number of frozen cores
 S= 0.d0			        !Total spin of the system
 restriction=.TRUE.	!Restrict to single ionisation
 /
@@ -28,8 +28,8 @@ delta= 1.5E+000		!Laser phase(units of pi)
 theta= 0.5d0	!Angle from the Z axis to polarisation(units of pi)
 phy= 0.0d0		!Angle between sin(theta) and the X axis(units of pi)
 pulsed= .TRUE.		!The form of the pulse
-nper= 7			!Number of optic cycles
-pdt= 200		!Number of timesteps per optic cycle 
+nper= 3			!Number of optic cycles
+pdt= 2000		!Number of timesteps per optic cycle 
 tmin=0.d0		!Initial time
 harmonic=1
 /

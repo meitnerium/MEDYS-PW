@@ -1,10 +1,11 @@
+
 import numpy as np
 import matplotlib.pyplot as plt
 import os
 xmax=6
 zmax=6
-x=np.arange(-xmax,xmax,0.1)
-z=np.arange(-zmax,zmax,0.1)
+x=np.arange(-xmax,xmax,0.001)
+z=np.arange(-zmax,zmax,0.001)
 orbc1s=np.zeros((len(x),len(z)))
 orbc2s=np.zeros((len(x),len(z)))
 orbc3s=np.zeros((len(x),len(z)))
@@ -183,29 +184,28 @@ for nx in range(len(x)):
         mocoeff[0][25]*orbO2_3py[nx,nz]+\
         mocoeff[0][26]*orbO2_3pz[nx,nz]
 
-
         for n in range(27):
-          MO[n,nx,nz]=mocoeff[n][0]*orbc1s[nx,nz]+mocoeff[n][1]*orbc2s[nx,nz]+mocoeff[n][2]*orbc3s[nx,nz]+mocoeff[n][3]*orbc2px[nx,nz]+mocoeff[n][4]*orbc2py[nx,nz]+mocoeff[n][5]*orbc2pz[nx,nz]+mocoeff[n][6]*orbc3px[nx,nz]+\
-          mocoeff[n][7]*orbc3py[nx,nz]+\
-          mocoeff[n][8]*orbc3pz[nx,nz]+\
-          mocoeff[n][9]*orbO1_1s[nx,nz]+\
-          mocoeff[n][10]*orbO1_2s[nx,nz]+\
-          mocoeff[n][11]*orbO1_3s[nx,nz]+\
-          mocoeff[n][12]*orbO1_2px[nx,nz]+\
-          mocoeff[n][13]*orbO1_2py[nx,nz]+\
-          mocoeff[n][14]*orbO1_2pz[nx,nz]+\
-          mocoeff[n][15]*orbO1_3px[nx,nz]+\
-          mocoeff[n][16]*orbO1_3py[nx,nz]+\
-          mocoeff[n][17]*orbO1_3pz[nx,nz]+\
-          mocoeff[n][18]*orbO2_1s[nx,nz]+\
-          mocoeff[n][19]*orbO2_2s[nx,nz]+\
-          mocoeff[n][20]*orbO2_3s[nx,nz]+\
-          mocoeff[n][21]*orbO2_2px[nx,nz]+\
-          mocoeff[n][22]*orbO2_2py[nx,nz]+\
-          mocoeff[n][23]*orbO2_2pz[nx,nz]+\
-          mocoeff[n][24]*orbO2_3px[nx,nz]+\
-          mocoeff[n][25]*orbO2_3py[nx,nz]+\
-          mocoeff[n][26]*orbO2_3pz[nx,nz]
+            MO[n,nx,nz]=mocoeff[n][0]*orbc1s[nx,nz]+mocoeff[n][1]*orbc2s[nx,nz]+mocoeff[n][2]*orbc3s[nx,nz]+mocoeff[n][3]*orbc2px[nx,nz]+mocoeff[n][4]*orbc2py[nx,nz]+mocoeff[n][5]*orbc2pz[nx,nz]+mocoeff[n][6]*orbc3px[nx,nz]+\
+            mocoeff[n][7]*orbc3py[nx,nz]+\
+            mocoeff[n][8]*orbc3pz[nx,nz]+\
+            mocoeff[n][9]*orbO1_1s[nx,nz]+\
+            mocoeff[n][10]*orbO1_2s[nx,nz]+\
+            mocoeff[n][11]*orbO1_3s[nx,nz]+\
+            mocoeff[n][12]*orbO1_2px[nx,nz]+\
+            mocoeff[n][13]*orbO1_2py[nx,nz]+\
+            mocoeff[n][14]*orbO1_2pz[nx,nz]+\
+            mocoeff[n][15]*orbO1_3px[nx,nz]+\
+            mocoeff[n][16]*orbO1_3py[nx,nz]+\
+            mocoeff[n][17]*orbO1_3pz[nx,nz]+\
+            mocoeff[n][18]*orbO2_1s[nx,nz]+\
+            mocoeff[n][19]*orbO2_2s[nx,nz]+\
+            mocoeff[n][20]*orbO2_3s[nx,nz]+\
+            mocoeff[n][21]*orbO2_2px[nx,nz]+\
+            mocoeff[n][22]*orbO2_2py[nx,nz]+\
+            mocoeff[n][23]*orbO2_2pz[nx,nz]+\
+            mocoeff[n][24]*orbO2_3px[nx,nz]+\
+            mocoeff[n][25]*orbO2_3py[nx,nz]+\
+            mocoeff[n][26]*orbO2_3pz[nx,nz]
 
 
 
@@ -259,4 +259,3 @@ plt.savefig('orbMO2.png')
 for n in range(27):
     plt.contourf(gridX,gridZ ,MO[n,:,:])
     plt.savefig('orbMO'+str(n)+'.png')
-
