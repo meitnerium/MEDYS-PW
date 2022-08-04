@@ -1,0 +1,11 @@
+Job ID: 41149861
+Cluster: cedar
+User/Group: dion/dion
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 32
+CPU Utilized: 03:10:26
+CPU Efficiency: 75.01% of 04:13:52 core-walltime
+Job Wall-clock time: 00:07:56
+Memory Utilized: 846.86 MB
+Memory Efficiency: 10.34% of 8.00 GB

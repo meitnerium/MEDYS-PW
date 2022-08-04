@@ -1,0 +1,11 @@
+Job ID: 41072385
+Cluster: cedar
+User/Group: dion/dion
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 32
+CPU Utilized: 03:28:21
+CPU Efficiency: 76.60% of 04:32:00 core-walltime
+Job Wall-clock time: 00:08:30
+Memory Utilized: 765.84 MB
+Memory Efficiency: 9.35% of 8.00 GB
